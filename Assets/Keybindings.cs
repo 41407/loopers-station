@@ -7,6 +7,7 @@ internal interface IKeybindings
     IEnumerable<KeyCode> Down { get; }
     IEnumerable<KeyCode> Left { get; }
     IEnumerable<KeyCode> Right { get; }
+    IEnumerable<KeyCode> AcceptOffer { get; }
 }
 
 internal class DefaultKeybindings : IKeybindings
@@ -15,4 +16,5 @@ internal class DefaultKeybindings : IKeybindings
     public IEnumerable<KeyCode> Down => new[] {KeyCode.S, KeyCode.DownArrow};
     public IEnumerable<KeyCode> Left => new[] {KeyCode.A, KeyCode.LeftArrow};
     public IEnumerable<KeyCode> Right => new[] {KeyCode.D, KeyCode.RightArrow};
+    public IEnumerable<KeyCode> AcceptOffer => new[] {KeyCode.X};
 }

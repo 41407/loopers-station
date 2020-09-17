@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
-public class SpacePilot : MonoBehaviour
+public class SpacePilotInput : MonoBehaviour
 {
     [Inject] private IKeybindings Keys { get; }
     [Inject] private ISteerable Ship { get; }

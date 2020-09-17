@@ -10,6 +10,11 @@ public class CreditsView : MonoBehaviour
 
     private int CurrentCredits { get; set; }
 
+    private void Start()
+    {
+        UpdateView();
+    }
+
     private void Update()
     {
         if (CurrentCredits < Account.Balance)

@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Zenject;
 
-internal interface ISpaceMap
+public interface ISpaceMap
 {
     ILocation GetAnyLocation();
     ILocation GetAnyLocationExcept(ILocation location);
+    List<ILocation> Locations { get; }
 }
 
 public class SpaceMap : ISpaceMap
 {
-    [Inject] private List<ILocation> Locations { get; }
+    [Inject] public List<ILocation> Locations { get; }
 
     public ILocation GetAnyLocation() => PickAnyFrom(Locations);
 
