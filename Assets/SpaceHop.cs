@@ -25,5 +25,5 @@ public class SpaceHop : MonoBehaviour, ISteerable
     }
 
     private void Move(Vector2 direction) => transform.Translate(direction, Space.World);
-    private void Look(Vector2 direction) => transform.rotation = Quaternion.LookRotation(direction, Vector3.forward);
+    private void Look(Vector2 direction) => transform.rotation = Quaternion.LookRotation(direction, Vector3.back);
 }

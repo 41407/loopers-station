@@ -5,7 +5,7 @@ using Zenject;
 
 public class SpacePilot : MonoBehaviour
 {
-    [Inject] private IKeybindings Keybindings { get; }
+    [Inject] private IKeybindings Keys { get; }
     [Inject] private ISteerable Ship { get; }
 
     private void Update()
@@ -16,10 +16,10 @@ public class SpacePilot : MonoBehaviour
         if (PilotSteersRight()) Ship.GoRight();
     }
 
-    private bool PilotSteersUp() => PlayerPresses(Keybindings.Up);
-    private bool PilotSteersDown() => PlayerPresses(Keybindings.Down);
-    private bool PilotSteersLeft() => PlayerPresses(Keybindings.Left);
-    private bool PilotSteersRight() => PlayerPresses(Keybindings.Right);
+    private bool PilotSteersUp() => PlayerPressesAnyOf(Keys.Up);
+    private bool PilotSteersDown() => PlayerPressesAnyOf(Keys.Down);
+    private bool PilotSteersLeft() => PlayerPressesAnyOf(Keys.Left);
+    private bool PilotSteersRight() => PlayerPressesAnyOf(Keys.Right);
 
-    private static bool PlayerPresses(IEnumerable<KeyCode> boundKeys) => boundKeys.Any(Input.GetKeyDown);
+    private static bool PlayerPressesAnyOf(IEnumerable<KeyCode> boundKeys) => boundKeys.Any(Input.GetKeyDown);
 }
