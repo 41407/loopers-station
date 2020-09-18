@@ -913,7 +913,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23, y: 17}
+  m_Size: {x: 21.333, y: 16}
   m_EdgeRadius: 0
 --- !u!1 &999748282
 GameObject:
@@ -6527,7 +6527,7 @@ Camera:
   far clip plane: 100
   field of view: 0.8
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6564,16 +6564,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1132518689507707852, guid: c5be358f0dbaa4830ba53769e27e750e,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 29
-      objectReference: {fileID: 0}
-    - target: {fileID: 1132518689507707852, guid: c5be358f0dbaa4830ba53769e27e750e,
-        type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1132518689693664001, guid: c5be358f0dbaa4830ba53769e27e750e,
         type: 3}
       propertyPath: m_LocalPosition.x
