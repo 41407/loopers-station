@@ -11,16 +11,17 @@ public class TraderView : MonoBehaviour
     {
         if (OfferIsAvailable())
         {
+            text.color = Color.white;
             UpdateText();
         }
 
         if (!string.IsNullOrEmpty(text.text) && !OfferIsAvailable())
         {
-            text.text = "";
+            text.color = Color.grey;
         }
     }
 
-    private bool OfferIsAvailable() => trader.Offer?.Value != 0;
+    private bool OfferIsAvailable() => trader.Offer.IsAvailable;
 
     private void UpdateText() => text.text = trader.Offer?.Description;
 }

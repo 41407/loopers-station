@@ -49,24 +49,17 @@ public class Trader : ITrader
     {
         var offer = location.GetImportOfferFor(CurrentCargo);
         Offer.Value = offer;
-        if (Offer.Value > CurrentCargo.Value)
+        var offerDescription = $"Traders at {location} are willing to buy your {CurrentCargo.Name} for {Offer.Value}.";
         {
-            var offerDescription = $"Traders at {location} are willing to buy your {CurrentCargo.Name} for {Offer.Value}.";
-            if (Offer.Value > 0)
-            {
-                Offer.Value = offer;
-                Offer.Description = offerDescription;
-            }
-            else
-            {
-                Offer.Clear();
-            }
+            Offer.Value = offer;
+            Offer.Commodity = CurrentCargo;
+            Offer.Description = offerDescription;
         }
     }
 
     public void AcceptOffer()
     {
-        if (Offer.IsGiven)
+        if (Offer.IsAvailable)
         {
             market.RegisterTransaction(Offer.Commodity);
             account.Credit(Offer.Value);

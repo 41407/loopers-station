@@ -5,7 +5,7 @@ public interface IOffer
     ICommodity Commodity { get; set; }
     bool IsAPurchase { get; }
     bool IsASale { get; }
-    bool IsGiven { get; }
+    bool IsAvailable { get; }
     void Clear();
 }
 
@@ -16,7 +16,7 @@ internal class Offer : IOffer
     public ICommodity Commodity { get; set; }
     public bool IsAPurchase => Value < 0;
     public bool IsASale => Value > 0;
-    public bool IsGiven => IsAPurchase || IsASale;
+    public bool IsAvailable => IsAPurchase || IsASale;
 
     public void Clear()
     {

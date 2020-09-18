@@ -25,19 +25,29 @@ public class SpaceInstaller : MonoInstaller
 
     private static IEnumerable<ICommodity> CreateCommodities(InjectContext arg)
     {
-        return new[]
-        {
-            new Commodity("Lobster", 100),
-            new Commodity("Nice Gloves", 10),
-            new Commodity("Space Helmets", 500),
-            new Commodity("Star Fuel", 400),
-            new Commodity("Food", 5),
-            new Commodity("Alien Artifacts", 1000),
-            new Commodity("Spacesuits", 600),
-            new Commodity("Seeds", 50),
-            new Commodity("Water", 30),
-            new Commodity("Ore", 5),
-            new Commodity("Rare Items", 2000)
-        };
+        var names = new List<string> {"Mud", "Rocks", "Bronze Ore", "Iron Ore", "Steel Ore", "Mithril Ore", "Adamantium Ore", "Eternium Ore", "Quantum Ore", "God Ore"};
+        var values = new List<int> {10, 50, 100, 200, 400, 800, 1600, 3200, 6400, 12800};
+        var commodities = MapIntoCommodities(names, values);
+        return commodities;
     }
+
+    private static IEnumerable<ICommodity> MapIntoCommodities(List<string> names, List<int> values)
+    {
+        var list = new List<ICommodity>();
+        for (var i = 0; i < WhicheverHasSmallerCount(names, values); i++)
+        {
+            var name = names[i];
+            var value = values[i];
+            var commodity = CreateCommodity(name, value);
+            list.Add(commodity);
+        }
+        return list;
+    }
+
+    private static int WhicheverHasSmallerCount(List<string> names, List<int> values)
+    {
+        return Mathf.Min(names.Count, values.Count);
+    }
+
+    private static Commodity CreateCommodity(string name, int value) => new Commodity(name, value);
 }
