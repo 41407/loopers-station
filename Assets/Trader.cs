@@ -6,6 +6,7 @@ public interface ITrader
     void Exit();
     void AcceptOffer();
     IOffer Offer { get; }
+    ILocation Location { get; }
 }
 
 public class Trader : ITrader
@@ -14,11 +15,13 @@ public class Trader : ITrader
     [Inject] private IMarket market;
     [Inject] private ICargo Cargo { get; }
 
+    public ILocation Location { get; set; }
     private ICommodity CurrentCargo => Cargo.Commodity;
     public IOffer Offer { get; } = new Offer();
 
     public void Enter(ILocation location)
     {
+        Location = location;
         if (CargoHoldsAreFull())
         {
             OfferToSellCargoTo(location);
@@ -36,7 +39,7 @@ public class Trader : ITrader
         {
             Offer.Value = -commodityForSale.Value;
             Offer.Commodity = commodityForSale;
-            Offer.Description = $"{commodityForSale.Name} is being sold for {commodityForSale.Value} € here.";
+            Offer.Description = $"{commodityForSale.Name} is being sold for {commodityForSale.Value} € here.\n\nx - buy {commodityForSale.Name}";
         }
     }
 
@@ -49,7 +52,7 @@ public class Trader : ITrader
     {
         var offer = location.GetImportOfferFor(CurrentCargo);
         Offer.Value = offer;
-        var offerDescription = $"Traders at {location} are willing to buy your {CurrentCargo.Name} for {Offer.Value}.";
+        var offerDescription = $"Traders at {location} are willing to buy your {CurrentCargo.Name} for {Offer.Value}.\n\nx - sell {CurrentCargo.Name}";
         {
             Offer.Value = offer;
             Offer.Commodity = CurrentCargo;
