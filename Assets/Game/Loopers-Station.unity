@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b57f86eff74ccba8f3ad96437c17d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationName: Big Blender
 --- !u!61 &429001690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -510,6 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b57f86eff74ccba8f3ad96437c17d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationName: C-3327
 --- !u!61 &661257272
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -581,6 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b57f86eff74ccba8f3ad96437c17d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationName: Spinner's Web
 --- !u!61 &740502541
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5613,6 +5616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b57f86eff74ccba8f3ad96437c17d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationName: Earf
 --- !u!61 &1556353789
 BoxCollider2D:
   m_ObjectHideFlags: 0

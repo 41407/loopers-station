@@ -6,8 +6,10 @@ using Random = UnityEngine.Random;
 
 public class Location : MonoBehaviour, ILocation
 {
+    [SerializeField] private string locationName;
     private List<ICommodity> Stockpiles { get; } = new List<ICommodity>();
 
+    public string Name => locationName;
     public Vector3 Position => transform.position;
 
     public void SetCommodities(IEnumerable<ICommodity> commodities)
@@ -35,10 +37,13 @@ public class Location : MonoBehaviour, ILocation
     {
         other.attachedRigidbody.GetComponentInChildren<ISpaceWorker>().Exit();
     }
+
+    public override string ToString() => Name;
 }
 
 public interface ILocation
 {
+    string Name { get; }
     Vector3 Position { get; }
     void SetCommodities(IEnumerable<ICommodity> commodities);
     int GetImportOfferFor(ICommodity commodity);
