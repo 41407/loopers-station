@@ -10,6 +10,8 @@ public interface ISteerable
 
 public class SpaceHop : MonoBehaviour, ISteerable
 {
+    private Vector2 Velocity { get; set; }
+
     public void GoUp() => Hop(Vector2.up);
 
     public void GoDown() => Hop(Vector2.down);
@@ -24,6 +26,12 @@ public class SpaceHop : MonoBehaviour, ISteerable
         Look(direction);
     }
 
-    private void Move(Vector2 direction) => transform.Translate(direction, Space.World);
+    private void Move(Vector2 direction) => Velocity += direction;
     private void Look(Vector2 direction) => transform.rotation = Quaternion.LookRotation(direction, Vector3.back);
+
+    private void Update()
+    {
+        transform.Translate(Velocity * Time.deltaTime, Space.World);
+        Velocity *= 0.99f;
+    }
 }

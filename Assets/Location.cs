@@ -6,27 +6,25 @@ using Random = UnityEngine.Random;
 
 public class Location : MonoBehaviour, ILocation
 {
-    private List<ICommodity> Commodities { get; } = new List<ICommodity>();
+    private List<ICommodity> Stockpiles { get; } = new List<ICommodity>();
 
     public Vector3 Position => transform.position;
 
     public void SetCommodities(IEnumerable<ICommodity> commodities)
     {
-        Commodities.Clear();
-        commodities.ToList().ForEach(commodity => Commodities.Add(new Commodity(commodity.Name, Random.Range(commodity.Value / 2, commodity.Value * 2))));
+        Stockpiles.Clear();
+        commodities.ToList().ForEach(commodity => Stockpiles.Add(new Commodity(commodity.Name, Random.Range(commodity.Value / 2, commodity.Value + commodity.Value / 2))));
     }
 
-    public int GetDealFor(ICommodity commodity) => Commodities.Find(Matching(commodity))?.Value ?? 0;
+    public int GetImportOfferFor(ICommodity commodity) => FindValueOf(commodity);
 
-    private static Predicate<ICommodity> Matching(ICommodity commodity)
-    {
-        return c => c.Name == commodity.Name;
-    }
+    private int FindValueOf(ICommodity commodity) => Find(commodity)?.Value ?? 0;
 
-    public ICommodity GetBestSale()
-    {
-        return Commodities.First();
-    }
+    private ICommodity Find(ICommodity commodity) => Stockpiles.Find(Matching(commodity));
+
+    private static Predicate<ICommodity> Matching(ICommodity commodity) => c => c.Name == commodity.Name;
+
+    public ICommodity GetBestSale() => Stockpiles.First();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,6 +41,6 @@ public interface ILocation
 {
     Vector3 Position { get; }
     void SetCommodities(IEnumerable<ICommodity> commodities);
-    int GetDealFor(ICommodity commodity);
+    int GetImportOfferFor(ICommodity commodity);
     ICommodity GetBestSale();
 }

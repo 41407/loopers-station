@@ -3,18 +3,18 @@ using UnityEngine;
 
 internal interface IKeybindings
 {
-    IEnumerable<KeyCode> Up { get; }
-    IEnumerable<KeyCode> Down { get; }
-    IEnumerable<KeyCode> Left { get; }
-    IEnumerable<KeyCode> Right { get; }
-    IEnumerable<KeyCode> AcceptOffer { get; }
+    IReadOnlyList<KeyCode> Up { get; }
+    IReadOnlyList<KeyCode> Down { get; }
+    IReadOnlyList<KeyCode> Left { get; }
+    IReadOnlyList<KeyCode> Right { get; }
+    IReadOnlyList<KeyCode> AcceptOffer { get; }
 }
 
 internal class DefaultKeybindings : IKeybindings
 {
-    public IEnumerable<KeyCode> Up => new[] {KeyCode.W, KeyCode.UpArrow};
-    public IEnumerable<KeyCode> Down => new[] {KeyCode.S, KeyCode.DownArrow};
-    public IEnumerable<KeyCode> Left => new[] {KeyCode.A, KeyCode.LeftArrow};
-    public IEnumerable<KeyCode> Right => new[] {KeyCode.D, KeyCode.RightArrow};
-    public IEnumerable<KeyCode> AcceptOffer => new[] {KeyCode.X};
+    public IReadOnlyList<KeyCode> Up => new[] {KeyCode.W, KeyCode.UpArrow};
+    public IReadOnlyList<KeyCode> Down => new[] {KeyCode.S, KeyCode.DownArrow};
+    public IReadOnlyList<KeyCode> Left => new[] {KeyCode.A, KeyCode.LeftArrow};
+    public IReadOnlyList<KeyCode> Right => new[] {KeyCode.D, KeyCode.RightArrow};
+    public IReadOnlyList<KeyCode> AcceptOffer => new[] {KeyCode.X};
 }

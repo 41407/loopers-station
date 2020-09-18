@@ -17,11 +17,36 @@ public class CreditsView : MonoBehaviour
 
     private void Update()
     {
-        if (CurrentCredits < Account.Balance)
+        if (AccountHasBeenCredited())
         {
-            CurrentCredits++;
-            UpdateView();
+            IncrementView();
         }
+        else if (AccountHasLostCredit())
+        {
+            SetView(Account.Balance);
+        }
+    }
+
+    private void SetView(int accountBalance)
+    {
+        CurrentCredits = accountBalance;
+        UpdateView();
+    }
+
+    private void IncrementView()
+    {
+        CurrentCredits++;
+        SetView(CurrentCredits);
+    }
+
+    private bool AccountHasLostCredit()
+    {
+        return CurrentCredits > Account.Balance;
+    }
+
+    private bool AccountHasBeenCredited()
+    {
+        return CurrentCredits < Account.Balance;
     }
 
     private void UpdateView()

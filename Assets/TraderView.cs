@@ -9,9 +9,18 @@ public class TraderView : MonoBehaviour
 
     private void Update()
     {
-        if (trader.Offer?.Value != 0)
+        if (OfferIsAvailable())
         {
-            text.text = trader.Offer.Description;
+            UpdateText();
+        }
+
+        if (!string.IsNullOrEmpty(text.text) && !OfferIsAvailable())
+        {
+            text.text = "";
         }
     }
+
+    private bool OfferIsAvailable() => trader.Offer?.Value != 0;
+
+    private void UpdateText() => text.text = trader.Offer?.Description;
 }

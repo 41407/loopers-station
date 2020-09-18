@@ -21,5 +21,5 @@ public class SpacePilotInput : MonoBehaviour
     private bool PilotSteersLeft() => PlayerPressesAnyOf(Keys.Left);
     private bool PilotSteersRight() => PlayerPressesAnyOf(Keys.Right);
 
-    private static bool PlayerPressesAnyOf(IEnumerable<KeyCode> boundKeys) => boundKeys.Any(Input.GetKeyDown);
+    private static bool PlayerPressesAnyOf(IReadOnlyList<KeyCode> boundKeys) => boundKeys.Any(Input.GetKeyDown);
 }

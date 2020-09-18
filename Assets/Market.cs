@@ -30,6 +30,6 @@ public class Market : IMarket
 
     private void RandomizeCommodities() => Map.Locations.ForEach(SetCommodities);
 
-    private void SetCommodities(ILocation location) => location.SetCommodities(Commodities.OrderBy(Random).Take(3));
+    private void SetCommodities(ILocation location) => location.SetCommodities(Commodities.OrderBy(Random).Take(5));
     private static int Random(ICommodity commodity) => UnityEngine.Random.Range(-1, 1);
 }

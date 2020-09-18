@@ -6,7 +6,7 @@ internal interface ISalary
     void Pay(ILocation source, ILocation target);
 }
 
-public class Salary : ISalary
+public class SpaceWorkerSalary : ISalary
 {
     [Inject] private IBankAccount account;
 
