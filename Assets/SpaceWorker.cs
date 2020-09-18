@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -13,21 +15,20 @@ public class SpaceWorker : MonoBehaviour, ISpaceWorker
     [Inject] private ISalary Salary { get; }
     [Inject] private ITargetMarker TargetMarker { get; }
     [Inject] private ITrader Trader { get; }
+    [Inject] private List<ISpecialDelivery> SpecialDeliveries { get; }
 
-    private ILocation SourceLocation { get; set; }
-    private ILocation TargetLocation { get; set; }
+    private ISpecialDelivery CurrentDelivery { get; set; } = new SpecialDelivery("");
 
     private void Start()
     {
         SetTargetLocation();
-        SourceLocation = TargetLocation;
     }
 
     public void Enter(ILocation location)
     {
-        if (location == TargetLocation)
+        if (location == CurrentDelivery.Destination)
         {
-            Salary.Pay(SourceLocation, TargetLocation);
+            Salary.Pay(CurrentDelivery);
             SetTargetLocation(location);
         }
 
@@ -41,15 +42,13 @@ public class SpaceWorker : MonoBehaviour, ISpaceWorker
 
     private void SetTargetLocation(ILocation location = null)
     {
-        if (location == null)
-        {
-            TargetLocation = SpaceMap.GetAnyLocation();
-        }
-        else
-        {
-            TargetLocation = SpaceMap.GetAnyLocationExcept(location);
-        }
+        var targetLocation = location == null ? SpaceMap.GetAnyLocation() : SpaceMap.GetAnyLocationExcept(location);
 
-        TargetMarker.GoTo(TargetLocation);
+        CurrentDelivery.Name = SpecialDeliveries.OrderBy(Randomized).First().Name;
+        CurrentDelivery.Source = location;
+        CurrentDelivery.Destination = targetLocation;
+        TargetMarker.GoTo(CurrentDelivery.Destination);
     }
+
+    private static int Randomized(ISpecialDelivery arg) => Random.Range(-1, 1);
 }

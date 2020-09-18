@@ -79,7 +79,7 @@ public class Trader : ITrader
 
     private void UnloadCargo()
     {
-        Cargo.Unload();
+        Cargo.UnloadCommodity();
     }
 
     private void LoadCargo(ICommodity offerCommodity)
