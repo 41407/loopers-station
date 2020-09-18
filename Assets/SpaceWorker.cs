@@ -6,6 +6,7 @@ using Zenject;
 public interface ISpaceWorker
 {
     void Enter(ILocation location);
+    void Enter(IArea area);
     void Exit();
 }
 
@@ -18,11 +19,20 @@ public class SpaceWorker : MonoBehaviour, ISpaceWorker
     [Inject] private List<ISpecialDelivery> SpecialDeliveries { get; }
     [Inject] private ISpecialDelivery CurrentDelivery { get; set; }
 
-    private void Start()
-    {
-        UnloadSpecialCargo();
-    }
+    private IArea CurrentArea { get; set; }
 
+    public void Enter(IArea area)
+    {
+        var enteringFirstArea = CurrentArea == null;
+        CurrentArea = area;
+        SpaceMap.Add(area.Locations);
+        if (enteringFirstArea)
+        {
+            UnloadSpecialCargo();
+        }
+
+        Trader.Enter(area);
+    }
 
     public void Enter(ILocation location)
     {

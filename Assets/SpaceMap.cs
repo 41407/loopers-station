@@ -1,23 +1,27 @@
 using System.Collections.Generic;
 using System.Linq;
-using Zenject;
 
 public interface ISpaceMap
 {
     ILocation GetAnyLocation();
     ILocation GetAnyLocationExcept(ILocation location);
-    List<ILocation> Locations { get; }
+    List<ILocation> KnownLocations { get; }
+    void Add(List<ILocation> locations);
 }
 
 public class SpaceMap : ISpaceMap
 {
-    [Inject] public List<ILocation> Locations { get; }
+    public List<ILocation> KnownLocations { get; } = new List<ILocation>();
 
-    public ILocation GetAnyLocation() => PickAnyFrom(Locations);
+    public void Add(List<ILocation> locations) => locations.FindAll(Unknown).ForEach(KnownLocations.Add);
+
+    private bool Unknown(ILocation location) => !KnownLocations.Contains(location);
+
+    public ILocation GetAnyLocation() => PickAnyFrom(KnownLocations);
 
     public ILocation GetAnyLocationExcept(ILocation location) => PickAnyFrom(AllExcept(location));
 
-    private IEnumerable<ILocation> AllExcept(ILocation location) => Locations.FindAll(loc => loc != location);
+    private IEnumerable<ILocation> AllExcept(ILocation location) => KnownLocations.FindAll(loc => loc != location);
 
     private static ILocation PickAnyFrom(IEnumerable<ILocation> locations) => locations.OrderBy(Random).First();
 

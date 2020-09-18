@@ -6,22 +6,30 @@ public interface ITrader
     void Exit();
     void AcceptOffer();
     IOffer Offer { get; }
-    ILocation Location { get; }
+    ILocation CurrentLocation { get; }
+    void Enter(IArea area);
 }
 
 public class Trader : ITrader
 {
     [Inject] private IBankAccount account;
-    [Inject] private IMarket market;
     [Inject] private ICargo Cargo { get; }
 
-    public ILocation Location { get; set; }
+    private IMarket CurrentMarket { get; set; }
+    public ILocation CurrentLocation { get; set; }
+
+
     private ICommodity CurrentCargo => Cargo.Commodity;
     public IOffer Offer { get; } = new Offer();
 
+    public void Enter(IArea area)
+    {
+        CurrentMarket = area.Market;
+    }
+
     public void Enter(ILocation location)
     {
-        Location = location;
+        CurrentLocation = location;
         if (CargoHoldsAreFull())
         {
             OfferToSellCargoTo(location);
@@ -64,7 +72,7 @@ public class Trader : ITrader
     {
         if (Offer.IsAvailable)
         {
-            market.RegisterTransaction(Offer.Commodity);
+            CurrentMarket.RegisterTransaction(Offer.Commodity);
             account.Credit(Offer.Value);
 
             if (Offer.IsAPurchase)

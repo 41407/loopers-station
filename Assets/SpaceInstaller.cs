@@ -14,13 +14,14 @@ public class SpaceInstaller : MonoInstaller
         Container.Bind<ISteerable>().FromComponentInHierarchy().AsSingle();
         Container.Bind<IKeybindings>().To<DefaultKeybindings>().AsSingle();
         Container.Bind<ISpaceMap>().To<SpaceMap>().AsSingle();
-        Container.Bind<ILocation>().FromComponentsInHierarchy().AsSingle();
+        Container.Bind<ILocation>().FromComponentsInChildren().AsTransient();
+        Container.Bind<IArea>().FromComponentInParents().AsTransient();
         Container.Bind<ISalary>().To<SpaceWorkerSalary>().AsSingle();
         Container.Bind<IBankAccount>().To<BankAccount>().AsSingle();
         Container.Bind<Text>().FromComponentSibling().AsTransient();
         Container.Bind<ITargetMarker>().FromComponentInNewPrefab(targetMarkerPrefab).AsSingle();
         Container.Bind<ITrader>().To<Trader>().AsSingle();
-        Container.Bind<IMarket>().To<Market>().AsSingle();
+        Container.Bind<IMarket>().To<Market>().AsTransient();
         Container.Bind<ICommodity>().FromMethodMultiple(CreateCommodities).AsSingle();
         Container.Bind<List<ISpecialDelivery>>().FromInstance(CreateSpecialDeliveries()).AsSingle();
         Container.Bind<ISpecialDelivery>().To<SpecialDelivery>().AsSingle();

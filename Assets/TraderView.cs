@@ -23,5 +23,5 @@ public class TraderView : MonoBehaviour
 
     private bool OfferIsAvailable() => trader.Offer.IsAvailable;
 
-    private void UpdateText() => text.text = $"{trader.Location}\n{trader.Offer?.Description}";
+    private void UpdateText() => text.text = $"{trader.CurrentLocation}\n{trader.Offer?.Description}";
 }
