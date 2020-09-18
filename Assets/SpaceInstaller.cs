@@ -22,7 +22,8 @@ public class SpaceInstaller : MonoInstaller
         Container.Bind<ITrader>().To<Trader>().AsSingle();
         Container.Bind<IMarket>().To<Market>().AsSingle();
         Container.Bind<ICommodity>().FromMethodMultiple(CreateCommodities).AsSingle();
-        Container.Bind<ISpecialDelivery>().FromMethodMultiple(CreateSpecialDeliveries).AsSingle();
+        Container.Bind<List<ISpecialDelivery>>().FromInstance(CreateSpecialDeliveries()).AsSingle();
+        Container.Bind<ISpecialDelivery>().To<SpecialDelivery>().AsSingle();
         Container.Bind<ICargo>().To<Cargo>().AsSingle();
     }
 
@@ -34,13 +35,13 @@ public class SpaceInstaller : MonoInstaller
         return commodities;
     }
 
-    private static IEnumerable<ISpecialDelivery> CreateSpecialDeliveries(InjectContext arg)
+    private static List<ISpecialDelivery> CreateSpecialDeliveries()
     {
         var names = new List<string> {"Suitcase full of important Documents", "A very small crate", "A very hard box", "Loaf of Elven Bread", "Some weird musical instrument", "A sleeping cat", "A stack of papers", "Empty bottles", "A sealed letter", "A paper you've been told not to fold", "A sack of potatoes"};
         return MapIntoSpecialDeliveries(names);
     }
 
-    private static IEnumerable<ISpecialDelivery> MapIntoSpecialDeliveries(IEnumerable<string> names) => names.Select(CreateSpecialDelivery);
+    private static List<ISpecialDelivery> MapIntoSpecialDeliveries(IEnumerable<string> names) => names.Select(CreateSpecialDelivery).ToList();
 
     private static ISpecialDelivery CreateSpecialDelivery(string name) => new SpecialDelivery(name);
 

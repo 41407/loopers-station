@@ -11,7 +11,7 @@ internal class SpecialDelivery : ISpecialDelivery
     public ILocation Source { get; set; }
     public ILocation Destination { get; set; }
 
-    public SpecialDelivery(string name)
+    public SpecialDelivery(string name = null)
     {
         Name = name;
     }
