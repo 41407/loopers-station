@@ -11,13 +11,13 @@ public class SpecialDeliveryView : MonoBehaviour
 
     private void Update()
     {
-        if (SpecialDelivery.Source != SpecialDelivery.Destination)
+        if (SpecialDelivery.Source != null)
         {
             Text.text = $"{prefix}\n  {SpecialDelivery.Name}\n  Destination {SpecialDelivery.Destination}";
         }
         else
         {
-            Text.text = prefix;
+            Text.text = $"{prefix}\n  Pickup from {SpecialDelivery.Destination}";
         }
     }
 }

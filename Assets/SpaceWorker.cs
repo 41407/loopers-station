@@ -6,8 +6,8 @@ using Zenject;
 public interface ISpaceWorker
 {
     void Enter(ILocation location);
-    void Enter(IArea area);
     void Exit();
+    void Enter(IArea area);
 }
 
 public class SpaceWorker : MonoBehaviour, ISpaceWorker
@@ -19,26 +19,19 @@ public class SpaceWorker : MonoBehaviour, ISpaceWorker
     [Inject] private List<ISpecialDelivery> SpecialDeliveries { get; }
     [Inject] private ISpecialDelivery CurrentDelivery { get; set; }
 
-    private IArea CurrentArea { get; set; }
-
     public void Enter(IArea area)
     {
-        var enteringFirstArea = CurrentArea == null;
-        CurrentArea = area;
-        SpaceMap.Add(area.Locations);
-        if (enteringFirstArea)
+        if (CurrentDelivery.Destination == null || CurrentDelivery.Source == null)
         {
-            UnloadSpecialCargo();
+            UnloadSpecialCargoTo(null);
         }
-
-        Trader.Enter(area);
     }
 
     public void Enter(ILocation location)
     {
         if (location == CurrentDelivery.Destination)
         {
-            if (CurrentDelivery.Destination == CurrentDelivery.Source)
+            if (CurrentDelivery.Source == null)
             {
                 LoadSpecialCargoFrom(location);
             }
@@ -52,17 +45,12 @@ public class SpaceWorker : MonoBehaviour, ISpaceWorker
         Trader.Enter(location);
     }
 
-    private void UnloadSpecialCargo()
-    {
-        UnloadSpecialCargoTo(null);
-    }
-
     private void UnloadSpecialCargoTo(ILocation location)
     {
         var targetLocation = location == null ? SpaceMap.GetAnyLocation() : SpaceMap.GetAnyLocationExcept(location);
 
         CurrentDelivery.Name = "";
-        CurrentDelivery.Source = targetLocation;
+        CurrentDelivery.Source = null;
         CurrentDelivery.Destination = targetLocation;
         TargetMarker.GoTo(CurrentDelivery.Destination);
     }

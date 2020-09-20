@@ -21,11 +21,14 @@ public class SpaceInstaller : MonoInstaller
         Container.Bind<Text>().FromComponentSibling().AsTransient();
         Container.Bind<ITargetMarker>().FromComponentInNewPrefab(targetMarkerPrefab).AsSingle();
         Container.Bind<ITrader>().To<Trader>().AsSingle();
+        Container.Bind<ISpaceWorker>().FromComponentInHierarchy().AsSingle();
         Container.Bind<IMarket>().To<Market>().AsTransient();
         Container.Bind<ICommodity>().FromMethodMultiple(CreateCommodities).AsSingle();
         Container.Bind<List<ISpecialDelivery>>().FromInstance(CreateSpecialDeliveries()).AsSingle();
         Container.Bind<ISpecialDelivery>().To<SpecialDelivery>().AsSingle();
         Container.Bind<ICargo>().To<Cargo>().AsSingle();
+        Container.Bind<ISpaceCamera>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<ITimeController>().To<TimeController>().AsSingle();
     }
 
     private static IEnumerable<ICommodity> CreateCommodities(InjectContext arg)

@@ -20,14 +20,18 @@ public class Area : MonoBehaviour, IArea
     private void OnTriggerEnter2D(Collider2D other)
     {
         Market.Initialize(Locations);
-        var pilot = other.attachedRigidbody.GetComponentInChildren<ISpaceWorker>();
-        pilot.Enter(this);
+        var pilot = other.attachedRigidbody.GetComponentInChildren<ISpacePilot>();
+        pilot?.Enter(this);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        var warpable = GetWarpable(other);
-        warpable?.WarpAround(this);
+        var pilot = other.attachedRigidbody.GetComponentInChildren<ISpacePilot>();
+        if (pilot.CurrentArea?.Equals(this) ?? true)
+        {
+            var warpable = GetWarpable(other);
+            warpable?.WarpAround(this);
+        }
     }
 
     private static IWarpable GetWarpable(Collider2D other) => other.attachedRigidbody.GetComponentInChildren<IWarpable>();
