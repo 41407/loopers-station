@@ -5214,7 +5214,7 @@ Transform:
   m_GameObject: {fileID: 909849459263181443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 909849459153904105}
   - {fileID: 909849459443011782}
@@ -5420,7 +5420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b57f86eff74ccba8f3ad96437c17d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: Earf
+  locationName: Green Hell
 --- !u!61 &909849459682654751
 BoxCollider2D:
   m_ObjectHideFlags: 0

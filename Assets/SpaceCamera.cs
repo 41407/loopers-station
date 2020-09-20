@@ -19,7 +19,7 @@ public class SpaceCamera : MonoBehaviour, ISpaceCamera
             CurrentArea = area;
             TargetPosition = area.Position;
             var distance = Vector2.Distance(transform.position, TargetPosition);
-            TransitionStepDistance = distance / TransitionStepCount;
+            TransitionStepDistance = Mathf.Max(0.1f, distance / TransitionStepCount);
         }
     }
 
@@ -29,6 +29,7 @@ public class SpaceCamera : MonoBehaviour, ISpaceCamera
         {
             Time.Pause();
             transform.position = Vector2.MoveTowards(transform.position, TargetPosition, TransitionStepDistance);
+            Debug.Log(transform.position + " AND: " + TargetPosition);
         }
         else
         {
