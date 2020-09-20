@@ -21,7 +21,7 @@ public class SpaceWorker : MonoBehaviour, ISpaceWorker
 
     public void Enter(IArea area)
     {
-        if (CurrentDelivery.Destination == null || CurrentDelivery.Source == null)
+        if (CurrentDelivery.Destination == null && CurrentDelivery.Source == null)
         {
             UnloadSpecialCargoTo(null);
         }

@@ -539,6 +539,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4582548687578790832, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548687578790832, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4582548687578790834, guid: 725397aa9398c41f0b839346ec318d13,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -564,6 +574,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4582548687689874473, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548687689874473, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4582548687689874475, guid: 725397aa9398c41f0b839346ec318d13,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -588,6 +608,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688008885078, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688008885078, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688008885078, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4582548688181967304, guid: 725397aa9398c41f0b839346ec318d13,
         type: 3}
@@ -694,10 +729,50 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4582548688181967306, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688181967306, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688181967306, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688181967306, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688181967306, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_ScaleFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688181967307, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4582548688181967308, guid: 725397aa9398c41f0b839346ec318d13,
         type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688755895951, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582548688755895951, guid: 725397aa9398c41f0b839346ec318d13,
+        type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 725397aa9398c41f0b839346ec318d13, type: 3}

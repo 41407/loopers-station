@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game/Loopers-Station.unity
+    guid: 9798abf92c09049a29ef8f6393522fbd
   m_configObjects: {}

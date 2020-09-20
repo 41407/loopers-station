@@ -31,7 +31,11 @@ public class SpaceHop : MonoBehaviour, ISteerable
 
     private void Update()
     {
-        transform.Translate(Velocity * Time.deltaTime, Space.World);
-        Velocity *= 0.99f;
+        ApplyVelocity();
+        DampenVelocity();
     }
+
+    private void DampenVelocity() => Velocity *= 0.5f;
+
+    private void ApplyVelocity() => transform.Translate(Velocity, Space.World);
 }

@@ -29,7 +29,6 @@ public class SpaceCamera : MonoBehaviour, ISpaceCamera
         {
             Time.Pause();
             transform.position = Vector2.MoveTowards(transform.position, TargetPosition, TransitionStepDistance);
-            Debug.Log(transform.position + " AND: " + TargetPosition);
         }
         else
         {
